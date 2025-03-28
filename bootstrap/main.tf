@@ -47,7 +47,6 @@ resource "google_service_account" "tbd-terraform" {
   account_id = "${local.project}-lab"
 }
 
-
 resource "google_project_iam_member" "tbd-editor-supervisors" {
   #checkov:skip=CKV_GCP_49: "Ensure no roles that enable to impersonate and manage all service accounts are used at a project level"
   #checkov:skip=CKV_GCP_117: "Ensure basic roles are not used at project level."
@@ -111,7 +110,7 @@ module "budget" {
   source  = "terraform-google-modules/project-factory/google//modules/budget"
   version = "18.0.0"
 
-  projects               = [local.project]
+  projects               = [google_project.tbd_project.project_id]
   billing_account        = var.billing_account
   amount                 = var.budget_amount
   display_name           = "budget-${local.project}"
