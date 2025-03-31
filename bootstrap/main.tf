@@ -71,8 +71,6 @@ resource "google_project_iam_member" "tbd-editor-member" {
   member  = "serviceAccount:${google_service_account.tbd-terraform.email}"
 }
 
-
-
 resource "google_storage_bucket" "tbd-state-bucket" {
   project                     = google_project.tbd_project.project_id
   name                        = "${local.project}-state"
