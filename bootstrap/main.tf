@@ -71,6 +71,12 @@ resource "google_project_iam_member" "tbd-editor-member" {
   member  = "serviceAccount:${google_service_account.tbd-terraform.email}"
 }
 
+resource "google_billing_account_iam_member" "tbd_billing_account_admin" {
+  billing_account_id = var.billing_account
+  role               = "roles/billing.admin"
+  member             = "user:pawel.niewierowski.stud@pw.edu.pl"
+}
+
 resource "google_storage_bucket" "tbd-state-bucket" {
   project                     = google_project.tbd_project.project_id
   name                        = "${local.project}-state"
