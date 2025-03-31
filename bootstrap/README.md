@@ -63,6 +63,7 @@ No modules.
 
 | Name | Type |
 |------|------|
+| [google_billing_account_iam_member.tbd_billing_account_admin](https://registry.terraform.io/providers/hashicorp/google/latest/docs/resources/billing_account_iam_member) | resource |
 | [google_monitoring_notification_channel.notification_channel](https://registry.terraform.io/providers/hashicorp/google/latest/docs/resources/monitoring_notification_channel) | resource |
 | [google_project.tbd_project](https://registry.terraform.io/providers/hashicorp/google/latest/docs/resources/project) | resource |
 | [google_project_iam_audit_config.tbd_project_audit](https://registry.terraform.io/providers/hashicorp/google/latest/docs/resources/project_iam_audit_config) | resource |
@@ -78,7 +79,7 @@ No modules.
 |------|-------------|------|---------|:--------:|
 | <a name="input_billing_account"></a> [billing\_account](#input\_billing\_account) | Billing account a project is attached to | `string` | n/a | yes |
 | <a name="input_budget_amount"></a> [budget\_amount](#input\_budget\_amount) | Budget amount | `number` | `100` | no |
-| <a name="input_budget_channels"></a> [budget\_channels](#input\_budget\_channels) | Budget notification channels | `map(string)` | <pre>{<br/>  "marek-wiewiorka": "marek.wiewiorka@gmail.com"<br/>}</pre> | no |
+| <a name="input_budget_channels"></a> [budget\_channels](#input\_budget\_channels) | Budget notification channels | `map(string)` | <pre>{<br/>  "bartosz-karolczak": "bartosz.karolczak.stud@pw.edu.pl",<br/>  "marek-wiewiorka": "marek.wiewiorka@gmail.com",<br/>  "pawel-niewierowski": "pawel.niewierowski.stud@pw.edu.pl"<br/>}</pre> | no |
 | <a name="input_budget_thresholds"></a> [budget\_thresholds](#input\_budget\_thresholds) | Budget thresholds | `list(number)` | <pre>[<br/>  0.1,<br/>  0.3,<br/>  0.5,<br/>  0.7,<br/>  0.9<br/>]</pre> | no |
 | <a name="input_region"></a> [region](#input\_region) | GCP region | `string` | `"europe-west1"` | no |
 | <a name="input_tbd_semester"></a> [tbd\_semester](#input\_tbd\_semester) | TBD semester | `string` | n/a | yes |

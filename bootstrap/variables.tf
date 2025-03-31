@@ -33,6 +33,8 @@ variable "budget_channels" {
   type        = map(string)
   description = "Budget notification channels"
   default = {
-    marek-wiewiorka : "marek.wiewiorka@gmail.com"
+    marek-wiewiorka : "marek.wiewiorka@gmail.com",
+    bartosz-karolczak : "bartosz.karolczak.stud@pw.edu.pl",
+    pawel-niewierowski : "pawel.niewierowski.stud@pw.edu.pl"
   }
 }
