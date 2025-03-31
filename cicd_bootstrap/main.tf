@@ -10,7 +10,7 @@ resource "google_iam_workload_identity_pool" "tbd-workload-identity-pool" {
 resource "google_iam_workload_identity_pool_provider" "tbd-workload-identity-provider" {
   #checkov:skip=CKV_GCP_125: "Ensure GCP GitHub Actions OIDC trust policy is configured securely"
   workload_identity_pool_id          = google_iam_workload_identity_pool.tbd-workload-identity-pool.workload_identity_pool_id
-  workload_identity_pool_provider_id = "github-actions-provider"
+  workload_identity_pool_provider_id = "github-actions-provider-2"
   display_name                       = "GitHub provider"
   description                        = "GitHub identity pool provider for CI/CD purposes"
   attribute_mapping = {
