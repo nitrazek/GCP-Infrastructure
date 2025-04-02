@@ -93,8 +93,12 @@ IMPORTANT ❗ ❗ ❗ Please remember to destroy all the resources after each wo
     ![img.png](doc/reports/vertex-graph.png)
 
 7. Reach YARN UI
-   
-   ***place the command you used for setting up the tunnel, the port and the screenshot of YARN UI here***
+
+    Command used: "gcloud compute ssh tbd-cluster-m --project=tbd-2025l-2 --zone=europe-west1-d -- -D 1080 -N"
+
+    url: http://tbd-cluster-m:8088
+
+    ![img.png](doc/reports/yarn-ui.png)
    
 8. Draw an architecture diagram (e.g. in draw.io) that includes:
     1. VPC topology with service assignment to subnets
@@ -102,7 +106,7 @@ IMPORTANT ❗ ❗ ❗ Please remember to destroy all the resources after each wo
     3. List of buckets for disposal
     4. Description of network communication (ports, why it is necessary to specify the host for the driver) of Apache Spark running from Vertex AI Workbech
   
-    ***place your diagram here***
+    ![img.png](doc/reports/diagram.png)
 
 9. Create a new PR and add costs by entering the expected consumption into Infracost
 For all the resources of type: `google_artifact_registry`, `google_storage_bucket`, `google_service_networking_connection`
