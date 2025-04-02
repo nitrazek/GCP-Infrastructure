@@ -93,8 +93,12 @@ IMPORTANT ❗ ❗ ❗ Please remember to destroy all the resources after each wo
     ![img.png](doc/reports/vertex-graph.png)
 
 7. Reach YARN UI
-   
-   ***place the command you used for setting up the tunnel, the port and the screenshot of YARN UI here***
+
+    Command used: "gcloud compute ssh tbd-cluster-m --project=tbd-2025l-2 --zone=europe-west1-d -- -D 1080 -N"
+
+    url: http://tbd-cluster-m:8088
+
+    ![img.png](doc/reports/yarn-ui.png)
    
 8. Draw an architecture diagram (e.g. in draw.io) that includes:
     1. VPC topology with service assignment to subnets
@@ -102,19 +106,52 @@ IMPORTANT ❗ ❗ ❗ Please remember to destroy all the resources after each wo
     3. List of buckets for disposal
     4. Description of network communication (ports, why it is necessary to specify the host for the driver) of Apache Spark running from Vertex AI Workbech
   
-    ***place your diagram here***
+    ![img.png](doc/reports/diagram.png)
 
 9. Create a new PR and add costs by entering the expected consumption into Infracost
 For all the resources of type: `google_artifact_registry`, `google_storage_bucket`, `google_service_networking_connection`
 create a sample usage profiles and add it to the Infracost task in CI/CD pipeline. Usage file [example](https://github.com/infracost/infracost/blob/master/infracost-usage-example.yml) 
 
-   ***place the expected consumption you entered here***
+   ```yaml
+    resources:
+        google_artifact_registry_repository.my_artifact_registry:
+            storage_gb: 150
+            monthly_egress_data_transfer_gb:
+            europe_west1: 100
+        
+        google_storage_bucket.my_storage_bucket:
+            storage_gb: 150
+            monthly_class_a_operations: 40000
+            monthly_class_b_operations: 20000
+            monthly_data_retrieval_gb: 500
+            monthly_egress_data_transfer_gb:
+            same_continent: 550
+            worldwide: 12500
+            asia: 1500
+            china: 50
+            australia: 250
 
-   ***place the screenshot from infracost output here***
+        google_service_networking_connection.my_connection:
+            monthly_egress_data_transfer_gb:
+            same_region: 250
+            us_or_canada: 100
+            europe: 70
+            asia: 50
+            south_america: 100
+            oceania: 50
+            worldwide: 200
+   ```
+
+   ![img.png](doc/reports/infracost.png)
 
 10. Create a BigQuery dataset and an external table using SQL
     
-    ***place the code and output here***
+    ```SQL
+    CREATE SCHEMA IF NOT EXISTS `tbd_dataset` OPTIONS (location='europe-west1');
+    A dataset named tbd_dataset has been created.
+
+
+    ```
    
     ***why does ORC not require a table schema?***
 
