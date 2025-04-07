@@ -4,9 +4,8 @@ IMPORTANT ❗ ❗ ❗ Please remember to destroy all the resources after each wo
 
 1. Authors:
 
-   ***enter your group nr***
-
-   ***link to forked repo***
+   **Group nr:** 2
+   **link to repo:** https://github.com/nitrazek/GCP-Infrastructure
    
 2. Follow all steps in README.md.
 
@@ -145,22 +144,41 @@ create a sample usage profiles and add it to the Infracost task in CI/CD pipelin
    ![img.png](doc/reports/infracost.png)
 
 10. Create a BigQuery dataset and an external table using SQL
-    
+
+    We uploaded [sample.csv](doc/data/sample.csv) file using gcutil.
+
     ```SQL
     CREATE SCHEMA IF NOT EXISTS `tbd_dataset` OPTIONS (location='europe-west1');
-    A dataset named tbd_dataset has been created.
+    #A dataset named "tbd_dataset" has been created.
 
-
+    CREATE OR REPLACE EXTERNAL TABLE `tbd_dataset.sample_table`
+    (
+    name STRING,
+    age INT64,
+    city STRING
+    )
+    OPTIONS (
+    format = 'CSV',
+    uris = ['gs://tbd-2025l-2-data/csv_files/sample.csv'],
+    skip_leading_rows = 1
+    );
+    #An external table named "sample_table" has been created.
     ```
    
     ***why does ORC not require a table schema?***
 
 11. Find and correct the error in spark-job.py
 
-    ***describe the cause and how to find the error***
+    ![img.png](doc/reports/spark-job-success.png)
+
+    The cause was wrong DATA_BUCKET varriable in spark-job.py script. We found an error in logs of Dataproc's job. After changing it, job finished succesfully.
 
 12. Add support for preemptible/spot instances in a Dataproc cluster
 
-    ***place the link to the modified file and inserted terraform code***
-    
-    
+    We edited [dataproc/main.tf](modules/dataproc/main.tf) file, by adding this code:
+
+    ```
+    preemptible_worker_config {
+      num_instances = 2
+    }
+    ```
